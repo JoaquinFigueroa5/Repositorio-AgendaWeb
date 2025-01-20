@@ -5,6 +5,17 @@
     justify-items: right;
 }
 
-.groupCard{
-    display: flex;
+.newContact{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    padding-bottom: 20px;
+    
+}
+
+body{
+    background-color: #2B3035;
 }

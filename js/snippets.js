@@ -28,3 +28,41 @@ window.onload = function (){
     }
         */
 }
+
+(() => {
+    'use strict'
+  
+    const forms = document.querySelectorAll('.needs-validation')
+  
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+  
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+
+
+  const previewPhoto = (event) => {
+    const photoPreview = document.getElementById("photo-preview");
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        photoPreview.innerHTML = `<img src="${e.target.result}" alt="Foto">`;
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removePhoto = () => {
+    const photoPreview = document.getElementById("photo-preview");
+    photoPreview.innerHTML = `<span class="text-light">No Photo</span>`;
+    document.getElementById("upload-photo").value = ""; // Resetea el input
+  };
+  

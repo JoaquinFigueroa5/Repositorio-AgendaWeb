@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>New Contact</title>
+    <link rel="stylesheet" href="css/newContatcs.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom border-body" data-bs-theme="dark">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <a class="navbar-brand" href="contacts.html">Agenda Telefonica</a>
+              <div class="d-flex justify-content-center align-items-center">
+                <a type="button" href="contacts.html" class="btn btn-outline-light">Contacts</a>
+              </div>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <form class="d-flex ms-auto" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+
+        <div class="container">
+            <div class="container d-flex justify-content-center align-items-center vh-100">
+                <div class="photo-container">
+                  <div class="photo-preview" id="photo-preview">
+                    <span class="text-light">No Photo</span>
+                  </div>
+                  <div class="d-flex gap-3">
+                    <label for="upload-photo" class="btn btn-outline-light d-flex align-items-center gap-2">
+                      <i class="bi bi-upload"></i> Cargar
+                      <input type="file" accept="image/*" id="upload-photo" onchange="previewPhoto(event)">
+                    </label>
+                    <button class="btn btn-outline-danger d-flex align-items-center gap-2" onclick="removePhoto()">
+                      <i class="bi bi-trash"></i> Quitar
+                    </button>
+                  </div>
+                </div>
+            <form class="row g-3 needs-validation" novalidate>
+                <div class="col-md-4" style="color: white;">
+                  <label for="validationCustom01" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="validationCustom01" value="" required>
+                  <div class="invalid-feedback">
+                    Ingresa un nombre valido!
+                  </div>
+                </div>
+                <div class="col-md-4" style="color: white;">
+                  <label for="validationCustom02" class="form-label">Empresa</label>
+                  <input type="text" class="form-control" id="validationCustom02" value="" required>
+                  <div class="invalid-feedback">
+                    Ingresa una empresa valida!
+                  </div>
+                </div>
+                <div class="col-md-4" style="color: white;">
+                  <label for="validationCustomUsername" class="form-label">Telefono</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">+502</span>
+                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                    <div class="invalid-feedback">
+                      Porfavor ingresa un numero telefonico.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6" style="color: white;">
+                  <label for="validationCustom03" class="form-label">Direccion</label>
+                  <input type="text" class="form-control" id="validationCustom03" required>
+                  <div class="invalid-feedback">
+                    Ingresa una direccion valida.
+                  </div>
+                </div>
+                <div class="col-md-3" style="color: white;">
+                  <label for="validationCustom04" class="form-label">Departamento</label>
+                  <select class="form-select" id="validationCustom04" required>
+                    <option selected disabled value="">Elegir departamento</option>
+                    <option>Guatemala</option>
+                    <option>Alta Verapaz</option>
+                    <option>Baja Verapaz</option>
+                    <option>Quiche</option>
+                    <option>Peten</option>
+                    <option>Santa Rosa</option>
+                    <option>Sacatepequez</option>
+                    <option>Suchitepequez</option>
+                    <option>Quetzaltenango</option>
+                    <option>Retalhuleu</option>
+                    <option>Jutiapa</option>
+                    <option>Jalapa</option>
+                    <option>Totonicapan</option>
+                    <option>Chimaltenango</option>
+                    <option>Chiquimula</option>
+                    <option>El Progreso</option>
+                    <option>Escuintla</option>
+                    <option>Huehuetenango</option>
+                    <option>Izabal</option>
+                    <option>San Marcos</option>
+                    <option>Solola</option>
+                    <option>Zacapa</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Sseleccione un departamento valido.
+                  </div>
+                </div>
+                <div class="col-12" style="color: white;">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                      Seguro quiere agregarlo?
+                    </label>
+                    <div class="invalid-feedback">
+                      Debe estar seguro antes de agregarlo.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-outline-light" type="submit">Agregar</button>
+                  <button class="btn btn-outline-danger" type="sumbit">Cancelar</button>
+                </div>
+                
+              </form>
+        </div>
+    </header>
+
+    <script src="js/snippets.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
