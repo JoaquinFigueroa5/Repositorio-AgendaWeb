@@ -1,0 +1,10 @@
+.search1{
+    display: flex;
+    align-items: right;
+    justify-content: right;
+    justify-items: right;
+}
+
+.groupCard{
+    display: flex;
+}
