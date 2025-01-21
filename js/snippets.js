@@ -2,7 +2,6 @@ function redirectToPage(event) {
     event.preventDefault();
     const username = document.querySelector('input[placeholder="Username"]').value.trim();
     const password = document.querySelector('input[placeholder="Password"]').value.trim();
-    //const remember = document.getElementById('rememberMe').checked;
 
     if (username === "" || password === "") {
         alert("Por favor, llena todos los campos.")
