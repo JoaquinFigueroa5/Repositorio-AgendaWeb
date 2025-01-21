@@ -9,20 +9,34 @@
   </head>
 <body>
     <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom border-body" data-bs-theme="dark">
+      <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="navbar-brand" href="contacts.html">Agenda Telefonica</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" href="contacts.html">Agenda Telefonica</a>
-          <div class="d-flex justify-content-center align-items-center">
-            <a type="button" href="newContacts.html" class="btn btn-outline-light">New Contact</a>
-          </div>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <form class="d-flex ms-auto" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
+          <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Perfil</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="contacts.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="newContacts.html">New Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Favorites</a>
+                </li>
+              </ul>
+              <form class="d-flex mt-3" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light" type="submit">Search</button>
+              </form>
+            </div>
           </div>
         </div>
       </nav>
@@ -31,100 +45,353 @@
       <div class="container mt-4" style="display: flex;">
         <div class="row gy-4">
           <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/aserradero.png" class="card-img-top" alt="Aserradero">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="assets/images/saul.jpeg" class="img-fluid rounded mx-auto d-block" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Saul De Leon</h5>
+                    <p class="card-text">Telefono: 5869-4127</p>
+                    <button type="button" class="btn btn-outline-dark" onclick="showAlert('alertSaul')">Ver detalles</button>
+                    <div class="alert-overlay" id="alertSaul" style="display: none;">
+                      <div class="alert-box bg-white rounded shadow-lg p-4">
+                        <p class="h5"><strong>Detalles</strong></p>
+                        <div class="row">
+                          <div class="col-12 col-md-4">
+                            <img src="assets/images/saul.jpeg" class="img-fluid rounded float-start" alt="..." style="width: 40rem;">
+                          </div>
+                          <div class="col-12 col-md-8">
+                            <ul class="list-group mt-3 mt-md-0">
+                              <li class="list-group-item list-group-item-dark" aria-current="true">
+                                <strong>Detalles Saul</strong>
+                              </li>
+                              <li class="list-group-item">Saul Estuardo</li>
+                              <li class="list-group-item">De Leon Barrientos</li>
+                              <li class="list-group-item">+502 5869-4127</li>
+                              <li class="list-group-item">Alguna calle y avenida de Jutiapa</li>
+                              <li class="list-group-item">Jutiapa</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <button class="btn btn-outline-dark mt-3 w-100" type="button" onclick="closeAlert('alertSaul')">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/aposa.png" class="card-img-top" alt="Aposa">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="assets/images/alepreciosa.jpeg" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Alejandra Ojeda</h5>
+                    <p class="card-text">Teléfono: 5988-8629</p>
+                    <button type="button" class="btn btn-outline-dark" onclick="showAlert('alertAlejandra')">Ver detalles</button>
+                    <div class="alert-overlay" id="alertAlejandra" style="display: none;">
+                      <div class="alert-box bg-white rounded shadow-lg p-4">
+                        <p class="h5"><strong>Detalles</strong></p>
+                        <div class="row">
+                          <div class="col-12 col-md-4">
+                            <img src="assets/images/alepreciosa.jpeg" class="img-fluid rounded float-start" alt="..." style="width: 100%;">
+                          </div>
+                          <div class="col-12 col-md-8">
+                            <ul class="list-group mt-3 mt-md-0">
+                              <li class="list-group-item list-group-item-dark" aria-current="true"><strong>Detalles Alejandra</strong></li>
+                              <li class="list-group-item">Alejandra Del Rosario</li>
+                              <li class="list-group-item">Ojeda Gordillo</li>
+                              <li class="list-group-item">+502 5988-8629</li>
+                              <li class="list-group-item">Alguna calle y avenida de Guatemala</li>
+                              <li class="list-group-item">Guatemala</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <button class="btn btn-outline-dark mt-3 w-100" type="button" onclick="closeAlert('alertAlejandra')">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/agua.png" class="card-img-top" alt="">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-12 col-md-4">
+                  <img src="assets/images/bany.jpeg" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Alejandro Quiñonez</h5>
+                    <p class="card-text">Teléfono: 3242-7562</p>
+                    <button type="button" class="btn btn-outline-dark" onclick="showAlert('alertQuinonez')">Ver detalles</button>
+                    <div class="alert-overlay" id="alertQuinonez" style="display: none;">
+                      <div class="alert-box bg-white rounded shadow-lg p-4">
+                        <p class="h5"><strong>Detalles</strong></p>
+                        <div class="row">
+                          <div class="col-12 col-md-4">
+                            <img src="assets/images/bany.jpeg" class="img-fluid rounded float-start" alt="..." style="width: 100%;">
+                          </div>
+                          <div class="col-12 col-md-8">
+                            <ul class="list-group mt-3 mt-md-0">
+                              <li class="list-group-item list-group-item-dark" aria-current="true"><strong>Detalles Quiñonez</strong></li>
+                              <li class="list-group-item">Bany Alejandro</li>
+                              <li class="list-group-item">Quiñonez Alvarado</li>
+                              <li class="list-group-item">+502 3242-7562</li>
+                              <li class="list-group-item">Alguna calle y avenida de Guatemala</li>
+                              <li class="list-group-item">Guatemala</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <button class="btn btn-outline-dark mt-3 w-100" type="button" onclick="closeAlert('alertQuinonez')">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </div>          
+          
+          
           <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/shipping.png" class="card-img-top" alt="">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-12 col-md-4">
+                  <img src="assets/images/derec.jpeg" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Dereck Aquino</h5>
+                    <p class="card-text">Teléfono: 7634-7635</p>
+                    <button type="button" class="btn btn-outline-dark" onclick="showAlert('alertAquino')">Ver detalles</button>
+                    <div class="alert-overlay" id="alertAquino" style="display: none;">
+                      <div class="alert-box bg-white rounded shadow-lg p-4">
+                        <p class="h5"><strong>Detalles</strong></p>
+                        <div class="row">
+                          <div class="col-12 col-md-4">
+                            <img src="assets/images/derec.jpeg" class="img-fluid rounded float-start" alt="..." style="width: 100%;">
+                          </div>
+                          <div class="col-12 col-md-8">
+                            <ul class="list-group mt-3 mt-md-0">
+                              <li class="list-group-item list-group-item-dark" aria-current="true"><strong>Detalles Dereck</strong></li>
+                              <li class="list-group-item">Dereck Alexander</li>
+                              <li class="list-group-item">Aquino Monroy</li>
+                              <li class="list-group-item">+502 7634-7635</li>
+                              <li class="list-group-item">Alguna calle y avenida de Guatemala</li>
+                              <li class="list-group-item">Guatemala</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <button class="btn btn-outline-dark mt-3 w-100" type="button" onclick="closeAlert('alertAquino')">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          
           <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/HidroPura.png" class="card-img-top" alt="">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-12 col-md-4">
+                  <img src="assets/images/jeremy.jpeg" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Jeremy Miranda</h5>
+                    <p class="card-text">Teléfono: 0231-6542</p>
+                    <button type="button" class="btn btn-outline-dark" onclick="showAlert('alertJerrmy')">Ver detalles</button>
+                    <div class="alert-overlay" id="alertJerrmy" style="display: none;">
+                      <div class="alert-box bg-white rounded shadow-lg p-4">
+                        <p class="h5"><strong>Detalles</strong></p>
+                        <div class="row">
+                          <div class="col-12 col-md-4">
+                            <img src="assets/images/jeremy.jpeg" class="img-fluid rounded float-start" alt="..." style="width: 100%;">
+                          </div>
+                          <div class="col-12 col-md-8">
+                            <ul class="list-group mt-3 mt-md-0">
+                              <li class="list-group-item list-group-item-dark" aria-current="true"><strong>Detalles Jeremy</strong></li>
+                              <li class="list-group-item">Jeremy Israel</li>
+                              <li class="list-group-item">Miranda Veliz</li>
+                              <li class="list-group-item">+502 0231-6542</li>
+                              <li class="list-group-item">Alguna calle y avenida de Guatemala</li>
+                              <li class="list-group-item">Guatemala</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <button class="btn btn-outline-dark mt-3 w-100" type="button" onclick="closeAlert('alertJerrmy')">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          
           <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/proquissa.png" class="card-img-top" alt="">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-12 col-md-4">
+                  <img src="assets/images/danilo.jpeg" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Danilo Molina</h5>
+                    <p class="card-text">Teléfono: 5988-8629</p>
+                    <button type="button" class="btn btn-outline-dark" onclick="showAlert('alertPescado')">Ver detalles</button>
+                    <div class="alert-overlay" id="alertPescado" style="display: none;">
+                      <div class="alert-box bg-white rounded shadow-lg p-4">
+                        <p class="h5"><strong>Detalles</strong></p>
+                        <div class="row">
+                          <div class="col-12 col-md-4">
+                            <img src="assets/images/danilo.jpeg" class="img-fluid rounded float-start" alt="..." style="width: 100%;">
+                          </div>
+                          <div class="col-12 col-md-8">
+                            <ul class="list-group mt-3 mt-md-0">
+                              <li class="list-group-item list-group-item-dark" aria-current="true"><strong>Detalles Danilo</strong></li>
+                              <li class="list-group-item">Angel Danilo</li>
+                              <li class="list-group-item">Molina Reyes</li>
+                              <li class="list-group-item">+502 5988-8629</li>
+                              <li class="list-group-item">Alguna calle y avenida de Palencia</li>
+                              <li class="list-group-item">El Progreso</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <button class="btn btn-outline-dark mt-3 w-100" type="button" onclick="closeAlert('alertPescado')">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          
           <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/industria.png" class="card-img-top" alt="">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-12 col-md-4">
+                  <img src="assets/images/yus.jpeg" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Yuslin Miranda</h5>
+                    <p class="card-text">Teléfono: 9325-8236</p>
+                    <button type="button" class="btn btn-outline-dark" onclick="showAlert('alertYus')">Ver detalles</button>
+                    <div class="alert-overlay" id="alertYus" style="display: none;">
+                      <div class="alert-box bg-white rounded shadow-lg p-4">
+                        <p class="h5"><strong>Detalles</strong></p>
+                        <div class="row">
+                          <div class="col-12 col-md-4">
+                            <img src="assets/images/yus.jpeg" class="img-fluid rounded float-start" alt="..." style="width: 100%;">
+                          </div>
+                          <div class="col-12 col-md-8">
+                            <ul class="list-group mt-3 mt-md-0">
+                              <li class="list-group-item list-group-item-dark" aria-current="true"><strong>Detalles Yuslin</strong></li>
+                              <li class="list-group-item">Yuslin Anai</li>
+                              <li class="list-group-item">Miranda Veliz</li>
+                              <li class="list-group-item">+502 9325-8236</li>
+                              <li class="list-group-item">Alguna calle y avenida de Guatemala</li>
+                              <li class="list-group-item">Guatemala</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <button class="btn btn-outline-dark mt-3 w-100" type="button" onclick="closeAlert('alertYus')">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          
           <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/recasa.png" class="card-img-top" alt="">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-12 col-md-4">
+                  <img src="assets/images/erickgamer.jpeg" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Fernando Rosales</h5>
+                    <p class="card-text">Teléfono: 2135-3456</p>
+                    <button type="button" class="btn btn-outline-dark" onclick="showAlert('alertErick')">Ver detalles</button>
+                    <div class="alert-overlay" id="alertErick" style="display: none;">
+                      <div class="alert-box bg-white rounded shadow-lg p-4">
+                        <p class="h5"><strong>Detalles</strong></p>
+                        <div class="row">
+                          <div class="col-12 col-md-4">
+                            <img src="assets/images/erickgamer.jpeg" class="img-fluid rounded float-start" alt="..." style="width: 100%;">
+                          </div>
+                          <div class="col-12 col-md-8">
+                            <ul class="list-group mt-3 mt-md-0">
+                              <li class="list-group-item list-group-item-dark" aria-current="true"><strong>Detalles Fernando</strong></li>
+                              <li class="list-group-item">Fernando Manuel</li>
+                              <li class="list-group-item">Garrido Rosales</li>
+                              <li class="list-group-item">+502 2135-3456</li>
+                              <li class="list-group-item">Alguna calle y avenida de Guatemala</li>
+                              <li class="list-group-item">Guatemala</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <button class="btn btn-outline-dark mt-3 w-100" type="button" onclick="closeAlert('alertErick')">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          
           <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/kristal.png" class="card-img-top" alt="">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-12 col-md-4">
+                  <img src="assets/images/fer.jpeg" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-12 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Fernando Arrue</h5>
+                    <p class="card-text">Teléfono: 7383-8924</p>
+                    <button type="button" class="btn btn-outline-dark" onclick="showAlert('alertFer')">Ver detalles</button>
+                    <div class="alert-overlay" id="alertFer" style="display: none;">
+                      <div class="alert-box bg-white rounded shadow-lg p-4">
+                        <p class="h5"><strong>Detalles</strong></p>
+                        <div class="row">
+                          <div class="col-12 col-md-4">
+                            <img src="assets/images/fer.jpeg" class="img-fluid rounded float-start" alt="..." style="width: 100%;">
+                          </div>
+                          <div class="col-12 col-md-8">
+                            <ul class="list-group mt-3 mt-md-0">
+                              <li class="list-group-item list-group-item-dark" aria-current="true"><strong>Detalles Fernando</strong></li>
+                              <li class="list-group-item">Fernando Nabo</li>
+                              <li class="list-group-item">Arrue Garcia</li>
+                              <li class="list-group-item">+502 7383-8924</li>
+                              <li class="list-group-item">Alguna calle y avenida de Guatemala</li>
+                              <li class="list-group-item">Guatemala</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <button class="btn btn-outline-dark mt-3 w-100" type="button" onclick="closeAlert('alertFer')">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/cenprodiesel.png" class="card-img-top" alt="">
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/Loralva.png" class="card-img-top" alt="">
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/suelos.png" class="card-img-top" alt="">
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/sued.png" class="card-img-top" alt="">
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/biolab.png" class="card-img-top" alt="">
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/diaz.png" class="card-img-top" alt="">
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/funerarias.png" class="card-img-top" alt="">
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/servext.png" class="card-img-top" alt="">
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-              <img src="assets/images/ferrun.png" class="card-img-top" alt="">
-            </div>
-          </div>
-  
+          
         </div>
       </div>
     </div>
 
+    <script src="js/snippets.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

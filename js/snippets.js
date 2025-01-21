@@ -66,3 +66,11 @@ window.onload = function (){
     document.getElementById("upload-photo").value = ""; // Resetea el input
   };
   
+  function showAlert(alertId){
+    document.getElementById(alertId).style.display = "flex";
+  }
+
+  function closeAlert(alertId){
+    document.getElementById(alertId).style.display = "none";
+  }
+  
