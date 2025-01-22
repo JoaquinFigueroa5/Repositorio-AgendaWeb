@@ -219,7 +219,7 @@ function reiniciarPag() {
 
 // Función para resaltar pendientes existentes con nombre "URGENTE"
 function resaltarPendientesUrgentes() {
-  const pendientes = document.querySelectorAll('#taskList .fw-bold');
+  const pendientes = document.querySelectorAll('.taskList .fw-bold');
   pendientes.forEach((pendiente) => {
     if (pendiente.textContent.trim().toLowerCase() === 'URGENTE') {
       pendiente.classList.add('text-red');
