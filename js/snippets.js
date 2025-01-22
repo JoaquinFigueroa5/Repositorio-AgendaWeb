@@ -73,24 +73,6 @@ function redirectToPage(event) {
 
   });
 
-  document.getElementById("orderSelect").addEventListener("change", function () {
-    const list = document.getElementById("taskList");
-    const tasks = Array.from(list.children); // Convertir NodeList a Array
-    const order = this.value;
-
-    tasks.sort((a, b) => {
-      // Extraer los minutos del texto "Last updated X mins ago"
-      const timeA = parseInt(a.querySelector("small").textContent.match(/\d+/)[0]);
-      const timeB = parseInt(b.querySelector("small").textContent.match(/\d+/)[0]);
-
-      // Ordenar según la opción seleccionada
-      return order === "asc" ? timeA - timeB : timeB - timeA;
-    });
-
-    // Reorganizar los elementos en el DOM
-    tasks.forEach(task => list.appendChild(task));
-  });
-
 
 // Función para cargar pendientes desde localStorage
 document.addEventListener("DOMContentLoaded", function() {
@@ -134,6 +116,9 @@ function agregarPendiente() {
     return;
   }
 
+  // Verificar si el nombre es "Urgente" para agregar la clase de color rojo
+  const nombreClass = nombre.toLowerCase() === 'URGENTE' ? 'text-red' : '';
+
   const fecha = new Date().toLocaleString();
 
   // Crear el nuevo pendiente
@@ -171,6 +156,12 @@ function eliminarPendientes() {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
   const pendientes = JSON.parse(localStorage.getItem('pendientes')) || [];
   
+
+  if (checkboxes.length === 0) {
+    alert('No hay pendientes seleccionados para eliminar.');
+    return;
+  }
+
   // Eliminar los pendientes que estén marcados
   checkboxes.forEach((checkbox) => {
     const li = checkbox.closest('li');
@@ -183,125 +174,60 @@ function eliminarPendientes() {
     li.remove();
   });
 
+  alert('Pendientes eliminados correctamente.');
+  location.reload();
+
   // Actualizar el localStorage con los pendientes restantes
   localStorage.setItem('pendientes', JSON.stringify(pendientes));
 }
 
-// Función para ordenar los pendientes por hora
 function ordenarPendientes() {
-  const pendientes = JSON.parse(localStorage.getItem('pendientes')) || [];
-  const orderSelect = document.getElementById('orderSelect').value;
-  
-  if (orderSelect === 'asc') {
-    // Orden ascendente por hora
-    pendientes.sort((a, b) => a.hora - b.hora);
-  } else if (orderSelect === 'desc') {
-    // Orden descendente por hora
-    pendientes.sort((a, b) => b.hora - a.hora);
+  const orderSelect = document.getElementById('orderSelect');
+  const listaPendientes = document.getElementById('taskList');
+  const pendientes = Array.from(listaPendientes.children); // Convertir los elementos en un array
+
+  if (orderSelect.value === "asc") {
+    // Ordenar colocando los elementos con "Urgente" primero
+    pendientes.sort((a, b) => {
+      const nombreA = a.querySelector('.fw-bold').textContent.trim().toLowerCase();
+      const nombreB = b.querySelector('.fw-bold').textContent.trim().toLowerCase();
+
+      if (nombreA === "urgente" && nombreB !== "urgente") return -1;
+      if (nombreA !== "urgente" && nombreB === "urgente") return 1;
+      return 0;
+    });
+  } else if (orderSelect.value === "desc") {
+    // Ordenar colocando los elementos con "Urgente" al final
+    pendientes.sort((a, b) => {
+      const nombreA = a.querySelector('.fw-bold').textContent.trim().toLowerCase();
+      const nombreB = b.querySelector('.fw-bold').textContent.trim().toLowerCase();
+
+      if (nombreA === "urgente" && nombreB !== "urgente") return 1;
+      if (nombreA !== "urgente" && nombreB === "urgente") return -1;
+      return 0;
+    });
   }
 
-  // Guardar el array ordenado en localStorage
-  localStorage.setItem('pendientes', JSON.stringify(pendientes));
-
-  // Recargar los pendientes con el nuevo orden
-  cargarPendientes();
+  // Vaciar y reinsertar los elementos ordenados
+  listaPendientes.innerHTML = '';
+  pendientes.forEach((pendiente) => listaPendientes.appendChild(pendiente));
 }
 
-// Función para manejar el estado de los checkboxes
-function seleccionarPendiente(checkbox) {
-  // Si el checkbox es seleccionado, almacenamos los datos del pendiente
-  if (checkbox.checked) {
-    const li = checkbox.closest('li');
-    const index = li.getAttribute('data-index');
-    const pendientes = JSON.parse(localStorage.getItem('pendientes')) || [];
-    pendienteSeleccionado = pendientes[index];
-
-    // Llenar los campos de edición con los datos del pendiente seleccionado
-    document.getElementById('inputEmail3').value = pendienteSeleccionado.nombre;
-    document.getElementById('inputPassword3').value = pendienteSeleccionado.descripcion;
-  } else {
-    // Si el checkbox es desmarcado, limpiamos los campos de edición
-    pendienteSeleccionado = null;
-    document.getElementById('inputEmail3').value = '';
-    document.getElementById('inputPassword3').value = '';
-  }
+function reiniciarPag() {
+  location.reload();
 }
 
-let pendienteSeleccionado = null; // Variable para almacenar el pendiente seleccionado
-
-// Función para manejar el estado de los checkboxes y seleccionar el pendiente
-function seleccionarPendiente(checkbox) {
-  const li = checkbox.closest('li');
-  const index = li.getAttribute('data-index');
-  const pendientes = JSON.parse(localStorage.getItem('pendientes')) || [];
-
-  if (checkbox.checked) {
-    pendienteSeleccionado = pendientes[index]; // Guardar el pendiente seleccionado
-    // Mostrar la alerta de edición
-    mostrarAlertaDeEdicion();
-  } else {
-    pendienteSeleccionado = null; // Limpiar la selección si se desmarca
-  }
+// Función para resaltar pendientes existentes con nombre "URGENTE"
+function resaltarPendientesUrgentes() {
+  const pendientes = document.querySelectorAll('#taskList .fw-bold');
+  pendientes.forEach((pendiente) => {
+    if (pendiente.textContent.trim().toLowerCase() === 'URGENTE') {
+      pendiente.classList.add('text-red');
+    }
+  });
 }
 
-// Función para mostrar la alerta de edición y llenar los campos con los datos del pendiente seleccionado
-function mostrarAlertaDeEdicion() {
-  if (!pendienteSeleccionado) return;
 
-  // Llenar los campos de la alerta con la información del pendiente
-  document.getElementById('inputEmail3').value = pendienteSeleccionado.nombre;
-  document.getElementById('inputPassword3').value = pendienteSeleccionado.descripcion;
-
-  // Mostrar la alerta
-  document.getElementById('alertAgregar').style.display = 'block';
-}
-
-// Función para cerrar la alerta
-function closeAlert(alertId) {
-  document.getElementById(alertId).style.display = 'none';
-}
-
-// Función para editar el pendiente
-function editarPendiente() {
-  if (!pendienteSeleccionado) {
-    alert('Por favor, seleccione un pendiente para editar.');
-    return;
-  }
-
-  // Obtener los nuevos valores del formulario
-  const nuevoNombre = document.getElementById('inputEmail3').value;
-  const nuevaDescripcion = document.getElementById('inputPassword3').value;
-
-  // Validar los campos
-  if (!nuevoNombre || !nuevaDescripcion) {
-    alert('Por favor ingrese el nombre y la descripción.');
-    return;
-  }
-
-  // Actualizar los datos del pendiente
-  pendienteSeleccionado.nombre = nuevoNombre;
-  pendienteSeleccionado.descripcion = nuevaDescripcion;
-
-  // Actualizar el localStorage con los nuevos datos
-  const pendientes = JSON.parse(localStorage.getItem('pendientes')) || [];
-  const index = pendientes.findIndex(p => p.nombre === pendienteSeleccionado.nombre && p.descripcion === pendienteSeleccionado.descripcion);
-  pendientes[index] = pendienteSeleccionado;
-
-  // Guardar los pendientes actualizados en localStorage
-  localStorage.setItem('pendientes', JSON.stringify(pendientes));
-
-  // Recargar la lista de pendientes
-  cargarPendientes();
-
-  // Cerrar la alerta
-  closeAlert('alertAgregar');
-
-  // Limpiar los campos del formulario
-  document.getElementById('inputEmail3').value = '';
-  document.getElementById('inputPassword3').value = '';
-
-  alert('Pendiente actualizado con éxito!');
-}
 
 
 

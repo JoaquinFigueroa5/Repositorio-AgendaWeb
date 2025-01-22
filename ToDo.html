@@ -76,9 +76,9 @@
     <div class="listToDo container">
       <div class="row">
         <select id="orderSelect" class="form-select mt-3" aria-label="Default select example" onchange="ordenarPendientes()">
-          <option value="nor" selected>Ordenar por:</option>
-          <option value="asc">Hora Ascendente</option>
-          <option value="desc">Hora Descendente</option>
+          <option value="nor" selected><button onchange="reiniciarPag()">Ordenar por:</button></option>
+          <option value="asc">Más prioridad</option>
+          <option value="desc">Menor proridad</option>
         </select>
         <!-- Primera lista -->
         <div class="">
@@ -104,17 +104,6 @@
                       <div class="mb-3 text-start">
                         <label for="inputPassword3" class="form-label">Descripción</label>
                         <input type="text" class="form-control" id="inputPassword3" placeholder="Ingrese una descripción" required>
-                      </div>
-                      <div class="mb-3 text-start">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="invalidCheck" required>
-                          <label class="form-check-label" for="invalidCheck">
-                            ¿Seguro que quiere agregarlo?
-                          </label>
-                          <div class="invalid-feedback">
-                            Debe estar seguro antes de agregarlo.
-                          </div>
-                        </div>
                       </div>
                       <button type="button" class="btn btn-dark w-100" onclick="agregarPendiente()">Agregar</button>
                     </form>
