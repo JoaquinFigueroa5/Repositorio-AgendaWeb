@@ -112,9 +112,29 @@
                 </div>
               </div>
             </div>
-            <button type="button" class="btn btn-outline-primary" onclick="editarPendiente()">Editar</button>
             </div>
             <button type="button" class="btn btn-outline-danger" onclick="eliminarPendientes()">Eliminar</button>
+          </div>
+        </div>
+        <div class="alert-overlay" id="alertEditar" style="display: none;">
+          <div class="alert-box bg-white rounded shadow-lg p-4">
+            <div class="row justify-content-center text-center">
+              <div class="col-12 col-md-8">
+                <h5 class="mb-4">Editar Pendiente</h5>
+                <form>
+                  <div class="mb-3 text-start">
+                    <label for="editarNombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="editarNombre" placeholder="Ingrese el nombre" required>
+                  </div>
+                  <div class="mb-3 text-start">
+                    <label for="editarDescripcion" class="form-label">Descripción</label>
+                    <input type="text" class="form-control" id="editarDescripcion" placeholder="Ingrese una descripción" required>
+                  </div>
+                  <button type="button" class="btn btn-dark w-100" onclick="guardarCambiosPendiente()">Guardar Cambios</button>
+                </form>
+                <button class="btn btn-outline-dark mt-3 w-100" type="button" onclick="closeAlert('alertEditar')">Cerrar</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -81,30 +81,43 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Función para cargar los pendientes desde localStorage al cargar la página
 function cargarPendientes() {
-  const pendientes = JSON.parse(localStorage.getItem('pendientes')) || [];
-  const taskList = document.getElementById('taskList');
-  taskList.innerHTML = '';  // Limpiar la lista antes de agregar nuevos pendientes
+  const pendientes = JSON.parse(localStorage.getItem("pendientes")) || [];
+  const taskList = document.getElementById("taskList");
+  taskList.innerHTML = ""; // Limpiar la lista antes de agregar nuevos pendientes
 
   pendientes.forEach((pendiente, index) => {
-    const li = document.createElement('li');
-    li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start');
-    li.setAttribute('data-index', index);
-    
+    const li = document.createElement("li");
+    li.classList.add(
+      "list-group-item",
+      "d-flex",
+      "justify-content-between",
+      "align-items-center"
+    );
+    li.setAttribute("data-index", index);
+
+    // Contenido del pendiente
     const contenido = `
-      <div class="ms-2">
-        <div class="fw-bold">${pendiente.nombre}</div>
+      <div class="contenido-pendiente" style="text-align: center; flex: 1; cursor: pointer;">
+        <div class="fw-bold ${
+          pendiente.nombre.toLowerCase() === "urgente" ? "text-danger" : ""
+        }">${pendiente.nombre}</div>
         ${pendiente.descripcion}
         <p class="card-text"><small class="text-body-secondary">${pendiente.fecha}</small></p>
       </div>
-      <div class="mb-3 form-check" style="margin-top: 15px;">
+      <div class="form-check" style="margin-left: 15px;">
         <input type="checkbox" class="form-check-input" id="check-${index}" onchange="verificarTarea(this)">
-        <label class="form-check-label" for="check-${index}"></label>
       </div>
     `;
+
     li.innerHTML = contenido;
+
+    // Evento para editar pendiente al hacer clic
+    li.querySelector(".contenido-pendiente").addEventListener("click", () => editarPendiente(index));
+
     taskList.appendChild(li);
   });
 }
+
 
 // Función para agregar un pendiente a la lista
 function agregarPendiente() {
@@ -116,8 +129,6 @@ function agregarPendiente() {
     return;
   }
 
-  // Verificar si el nombre es "Urgente" para agregar la clase de color rojo
-  const nombreClass = nombre.toLowerCase() === 'URGENTE' ? 'text-red' : '';
 
   const fecha = new Date().toLocaleString();
 
@@ -140,6 +151,38 @@ function agregarPendiente() {
   document.getElementById('inputEmail3').value = '';
   document.getElementById('inputPassword3').value = '';
   closeAlert('alertAgregar');
+}
+
+function editarPendiente(index) {
+  const pendientes = JSON.parse(localStorage.getItem('pendientes')) || [];
+  const pendiente = pendientes[index];
+
+  if (pendiente) {
+    document.getElementById('editarNombre').value = pendiente.nombre;
+    document.getElementById('editarDescripcion').value = pendiente.descripcion;
+    document.getElementById('alertEditar').setAttribute('data-index', index); // Guarda el índice para editar
+    showAlert('alertEditar');
+  }
+}
+
+function guardarCambiosPendiente() {
+  const index = document.getElementById('alertEditar').getAttribute('data-index');
+  const pendientes = JSON.parse(localStorage.getItem('pendientes')) || [];
+
+  if (index !== null && pendientes[index]) {
+    // Actualiza los datos del pendiente
+    pendientes[index].nombre = document.getElementById('editarNombre').value;
+    pendientes[index].descripcion = document.getElementById('editarDescripcion').value;
+
+    // Guarda los pendientes actualizados
+    localStorage.setItem('pendientes', JSON.stringify(pendientes));
+
+    // Recarga la lista de pendientes
+    cargarPendientes();
+    closeAlert('alertEditar');
+  } else {
+    alert('No se pudo actualizar el pendiente.');
+  }
 }
 
 // Función para manejar el estado de los checkboxes
